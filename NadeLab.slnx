@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src/NadeLab.Core/NadeLab.Core.csproj" />
+  <Project Path="src/NadeLab.Plugin/NadeLab.Plugin.csproj" />
+  <Project Path="src/NadeLab.Tool/NadeLab.Tool.csproj" />
+  <Project Path="src/NadeLab.Input/NadeLab.Input.csproj" />
+  <Project Path="tests/NadeLab.Tests/NadeLab.Tests.csproj" />
+  <Project Path="tests/NadeLab.Lifecycle.Tests/NadeLab.Lifecycle.Tests.csproj" />
+</Solution>

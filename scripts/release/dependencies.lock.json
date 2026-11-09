@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "platform": "windows-x64",
+  "packages": [
+    {
+      "name": "metamod",
+      "version": "2.0.0-git1473",
+      "url": "https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1473-windows.zip",
+      "sha256": "2b3cd479afd46c149fd1969d2688f6b565542dd94a323e0de81d7825791a23f7",
+      "bytes": 14658312,
+      "upstream": "https://www.metamodsource.net/downloads.php?branch=master"
+    },
+    {
+      "name": "css-runtime",
+      "version": "1.0.378",
+      "url": "https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.378/counterstrikesharp-with-runtime-windows-1.0.378.zip",
+      "sha256": "6784cc463e8a85e5e70d41c4190601ac4d93295ae7ebdd1e12b6bb92f861ae02",
+      "bytes": 51976478,
+      "upstream": "https://github.com/roflmuffin/CounterStrikeSharp/releases/tag/v1.0.378"
+    }
+  ],
+  "overrides": []
+}

@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>NadeLab</AssemblyName><EnableDynamicLoading>true</EnableDynamicLoading></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../NadeLab.Core/NadeLab.Core.csproj" />
+    <PackageReference Include="CounterStrikeSharp.API" Version="1.0.378" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

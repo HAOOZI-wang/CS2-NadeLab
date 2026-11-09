@@ -1,0 +1,36 @@
+name: 问题反馈 / Bug report
+description: 报告可复现的安装、菜单、搜索或实投问题
+body:
+  - type: markdown
+    attributes:
+      value: 请移除 SteamID、RCON 密码、令牌和个人目录。搜索未找到不等于理论无解；请尽量提供同站位的已知可行投法。不要上传游戏资源或完整训练记录。
+  - type: input
+    id: version
+    attributes:
+      label: 版本与环境
+      description: NadeLab 提交/版本、CS2 版本、Windows 版本、CounterStrikeSharp 版本
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 地图、道具、操作顺序、预期结果和实际结果
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: 证据类型
+      options:
+        - 安装或界面问题
+        - 只有模型预测，尚未实投
+        - 同站位真实手投对比
+        - 服务端诊断或自动测试
+    validations:
+      required: true
+  - type: textarea
+    id: attachments
+    attributes:
+      label: 可选证据
+      description: 脱敏的最小日志、截图或视频；涉及漏洞请先阅读 SECURITY.md。

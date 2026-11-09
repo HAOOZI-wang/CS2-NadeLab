@@ -1,0 +1,43 @@
+NadeLab 源码工作区：训练与调试
+
+首次准备
+先按 docs/development-guide.md 安装 SDK 并验证源码；没有 CS2 时运行 scripts/build.ps1 -SourceOnly。
+游戏内实测还需要合法安装的 CS2、Workshop Tools、MetaMod、CounterStrikeSharp 和匹配 UI。
+首次建立训练实例见 docs/release/install-and-recovery.md；独立服务器见 docs/release/server-guide.md。
+scripts/setup-local-server.ps1 是开发环境入口，需要显式指定 -GameInstallation，
+并预先在忽略目录 .tools/downloads/metamod 与 .tools/downloads/css-runtime 中准备官方依赖。
+该开发脚本的游戏硬链接要求源游戏与项目位于同一 NTFS 卷，不是通用玩家安装器。
+
+工作台
+双击根目录 工作台.cmd。项目开发服与玩家工具为独立实例，数据分别保存。
+默认玩家工具路径是 D:\apps\NadeLab，可用 scripts/workspace.ps1 -InstalledRoot <实际路径> 指定。
+两套实例默认共用 27025 端口，同一时间运行一套。-Plan 仅显示计划，不启动、构建或安装。
+源码根目录 NadeLab.cmd 是发布包入口模板；日常源码开发使用工作台。
+
+常用训练操作
+F1 菜单；滚轮/↑↓选择；E 确认/下一步；R 返回/下一投法；WASD 移动。
+F3 换道具；Shift+R 保留目标换站位；Shift+E 重选目标；V 飞行。
+有自己的假人时 F5 复位；更多条件以当前步骤的快捷键栏为准。
+输入模块只在获授权的训练状态接管相关输入，不改个人键位文件。
+菜单内暂时限制切装备，关闭菜单后滚轮恢复原功能。聊天 !nl 是菜单备用入口。
+完整操作说明、假人与道具库用法见 docs/release/player-guide.md。
+
+修改后的验证顺序
+1. 编译 UI（仅 UI 改动时）并运行 scripts/build.ps1 -NoPackage。
+2. 确认目标训练服无人、没有待保存现场，然后正常停止该实例。
+3. 运行 scripts/install-plugin.ps1 -ServerRoot server；安装器拒绝覆盖运行中的插件。
+4. 启动项目服并核对加载版本。UI 更新后重开 CS2，重连不能可靠清除 UI 缓存。
+5. 使用同地图、同站位、同目标或假人组合复现，分别记录模型预测和实投结果。
+构建成功不等于已安装；服务端检查通过不等于客户端画面或手投效果通过。
+
+定位问题
+安装或启动：工作台状态、对应实例 logs、安装日志。
+搜索/路线：插件 data/searches.jsonl；按假人寻闪：data/flash-searches.jsonl。
+实投偏差：对应道具记录、观测状态和地图/引擎版本，不要只比较预测分数。
+按键/菜单：确认输入模块连接、客户端 UI 与服务端匹配；不要反复覆盖个人绑定。
+工作台 A 为离线验收报告，不会替代实际进游戏操作。
+
+保留与分享
+普通故障不需要清空 data；修改数据前先备份。停止实例后再备份或迁移。
+server、.tools、artifacts 和个人数据不提交 Git。公开反馈只提供脱敏的最小复现，
+移除 SteamID、RCON 密码、令牌及个人路径，不上传完整配置或游戏资源。

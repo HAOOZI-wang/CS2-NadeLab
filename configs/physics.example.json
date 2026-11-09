@@ -1,0 +1,19 @@
+{
+  "Id": "mirage-partial-v4-jump-latch-unvalidated",
+  "Calibrated": false,
+  "Gravity": 320,
+  "ThrowSpeed": 675,
+  "Restitution": 0.45,
+  "TangentialRetention": 0.45,
+  "RestSpeed": 20,
+  "StepSeconds": 0.0078125,
+  "MinDetonateSeconds": 1.5,
+  "MaxSeconds": 12,
+  "HullHalfSize": 2,
+  "HeavyImpactSpeed": 330,
+  "PlayerVelocityScale": 1.25,
+  "ReleaseDelaySeconds": 0.1,
+  "PlayerGravity": 800,
+  "JumpImpulse": 301.99338,
+  "WalkSpeedRatio": 0.52
+}

@@ -1,0 +1,26 @@
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/custom_game/nadelab_panel.vcss_c" />
+    </styles>
+    <!-- CustomHud permits only its small XML subset: no scripts, html, style,
+         hittestchildren, or event attributes. The anonymous root is required. -->
+    <Panel class="nl-screen" hittest="false">
+        <Panel id="NadeLabCue" class="nl-window nl-cue" hittest="false">
+            <Label id="NadeLabCueText" class="nl-text nl-cue-text" text="{s:text}" hittest="false" />
+        </Panel>
+        <Panel id="NadeLabDummies" class="nl-window nl-dummies" hittest="false">
+            <Label id="NadeLabDummiesText" class="nl-text nl-dummies-text" text="{s:text}" hittest="false" />
+        </Panel>
+        <Panel class="nl-stack" hittest="false">
+            <Panel id="NadeLabNotice" class="nl-window nl-notice" hittest="false">
+                <Label id="NadeLabNoticeText" class="nl-text nl-notice-text" text="{s:text}" hittest="false" />
+            </Panel>
+            <Panel id="NadeLabWindow" class="nl-window" hittest="false">
+                <!-- Baked into the client resource; never populated by server text. -->
+                <Label id="NadeLabResourceRevision" class="nl-resource-revision" text="UI 20261104.1" hittest="false" />
+                <Label id="NadeLabText" class="nl-text" text="{s:text}" hittest="false" />
+                <Label id="NadeLabKeys" class="nl-text nl-keys" text="{s:text}" hittest="false" />
+            </Panel>
+        </Panel>
+    </Panel>
+</root>

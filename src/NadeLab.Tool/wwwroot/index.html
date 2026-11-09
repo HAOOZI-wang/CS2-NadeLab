@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NadeLab · 道具实验室</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="brand"><span class="logo">N</span><div><strong>NadeLab</strong><small>道具实验室 / 0.1</small></div></div><div class="badge"><i></i> 训练与研究</div></header>
+<main>
+<section class="intro"><div><p class="eyebrow">从目标开始，寻找投法</p><h1>让每一颗道具都有依据。</h1><p>固定站位，搜索角度与力度，再用真实投掷验证。</p></div><div class="mode"><span>当前场景</span><strong id="scene">合成测试场</strong><small id="sceneNote">用于检查求解流程，不是 Mirage 地图</small></div></section>
+<div class="workspace">
+<aside class="panel controls">
+<div class="section-title"><span class="step">01</span><h2>起点与目标</h2></div>
+<p class="subtle">坐标单位与游戏一致。俯视图支持点击选择。</p>
+<div class="pick"><button id="pickStart">选择起点</button><button id="pickTarget" class="active">选择目标</button></div>
+<label class="field-label">站位 · 脚下位置</label><div class="coords"><label>X<input id="sx" type="number" value="0"></label><label>Y<input id="sy" type="number" value="0"></label><label>Z<input id="sz" type="number" value="0"></label></div>
+<label class="field-label">目标 · 烟雾引爆中心</label><div class="coords"><label>X<input id="tx" type="number" value="850"></label><label>Y<input id="ty" type="number" value="100"></label><label>Z<input id="tz" type="number" value="2"></label></div>
+<div class="radius"><label for="radius">目标容许半径</label><input id="radius" type="number" min="1" max="256" value="32"><span>u</span></div>
+<label class="check"><input id="wide" type="checkbox">搜索全方向（含背向反弹）</label>
+<label class="check"><input id="box" type="checkbox">加入一个测试箱体</label>
+<button class="primary" id="solve"><span>搜索投法</span><span>↗</span></button>
+<p class="notice">物理模型尚未实测校准。模拟命中只能作为候选，不等于游戏内验证成功。</p>
+<div class="divider"></div>
+<div class="section-title"><span class="step">02</span><h2>接入 Mirage 训练服</h2></div>
+<p class="subtle">插件在真实地图中搜索并记录实投。导入结果后可在这里查看。</p>
+<ol class="commands"><li><code>!nl_target aim 32</code><span>准星选目标</span></li><li><code>!nl_start</code><span>记录站位</span></li><li><code>!nl_solve</code><span>分帧搜索</span></li><li><code>!nl_solution 1</code><span>预览候选</span></li><li><code>!nl_verify 1</code><span>准备手投验证</span></li></ol>
+<label class="import" for="file">导入搜索或实投记录 <span>＋</span></label><input id="file" type="file" accept=".json,.jsonl" hidden>
+<button id="refresh" class="secondary">读取训练服最新结果</button>
+</aside>
+<section class="panel visual">
+<div class="visual-header"><div class="tabs"><button class="active" id="top">俯视</button><button id="side">侧视</button></div><span class="view-note" id="viewNote">点击图面设置目标</span></div>
+<div class="canvas-wrap"><canvas id="plot" aria-label="投掷轨迹与目标区域"></canvas><div class="legend"><span class="start-dot">站位</span><span class="target-dot">目标范围</span><span class="path-dot">候选轨迹</span><span class="actual-dot" id="actualLegend" hidden>实投轨迹</span></div></div>
+<div class="result-top"><div><p class="eyebrow">搜索结果</p><h2 id="resultTitle">等待一次搜索</h2></div><button id="export" class="secondary" disabled>导出 JSON ↓</button></div>
+<div class="status" id="status" role="status" aria-live="polite">准备就绪。先试用合成测试场，或导入训练服结果。</div>
+<div id="results" class="results"><div class="empty"><span>⌁</span><p>可行候选将在这里出现</p><small>每个候选包含角度、力度、预测误差和扰动测试结果</small></div></div>
+<footer><span id="physics">模型：source-approx-v1-uncalibrated</span><span>静止站投 · 烟雾弹</span></footer>
+</section>
+</div>
+</main>
+<script src="app.js"></script>
+</body></html>

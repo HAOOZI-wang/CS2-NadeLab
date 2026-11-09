@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup><Compile Include="../../src/NadeLab.Plugin/OperationLifetime.cs" Link="OperationLifetime.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../src/NadeLab.Plugin/BoundedLogTail.cs" Link="BoundedLogTail.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../src/NadeLab.Plugin/OwnedPowerPolicy.cs" Link="OwnedPowerPolicy.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../src/NadeLab.Plugin/NativeStructVector.cs" Link="NativeStructVector.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../src/NadeLab.Plugin/ViewCorrectionOwnership.cs" Link="ViewCorrectionOwnership.cs" /></ItemGroup>
+</Project>
