@@ -301,8 +301,8 @@ def main():
         running = subprocess.run(['powershell', '-NoProfile', '-Command',
             "Get-Process cs2 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path"],
             capture_output=True, text=True, check=False)
-        client_exe = str(cfg.parents[1] / 'bin/win64/cs2.exe').replace('\\', '/').lower()
-        if any(line.strip().replace('\\', '/').lower() == client_exe for line in running.stdout.splitlines()):
+        client_exe = (cfg.parents[1] / 'bin/win64/cs2.exe').resolve()
+        if any(Path(line.strip()).resolve() == client_exe for line in running.stdout.splitlines() if line.strip()):
             raise RuntimeError('Exit the CS2 client before installing bindings; no files changed.')
     if args.restore_native:
         native_restore(keys, cfg, args.dry_run)

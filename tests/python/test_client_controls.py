@@ -174,7 +174,9 @@ class ClientControlsTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='nadelab-controls-test-')
         self.addCleanup(self.temp.cleanup)
-        self.base = Path(self.temp.name)
+        # Windows runners may expose TEMP through an 8.3 alias such as RUNNER~1.
+        # Use the same canonical paths as the installer for faults and receipts.
+        self.base = Path(self.temp.name).resolve()
         self.root = self.base / 'project'
         (self.root / 'configs').mkdir(parents=True)
         (self.root / 'configs/nadelab_keys.cfg').write_bytes((PROJECT / 'configs/nadelab_keys.cfg').read_bytes())
@@ -278,6 +280,20 @@ class ClientControlsTests(unittest.TestCase):
         with mock.patch.object(INSTALLER.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, executable, '')):
             with self.assertRaisesRegex(RuntimeError, 'Exit the CS2 client'):
                 self.invoke('--legacy-bindings', )
+        self.assert_destinations(before)
+        self.assertEqual(self.backups(), [])
+
+    def test_running_client_path_alias_refuses_before_writing_or_backup(self):
+        executable = self.cfg.parents[1] / 'bin/win64/cs2.exe'
+        executable.parent.mkdir(parents=True)
+        executable.write_bytes(b'isolated fixture; never executed')
+        alias = executable.parent / '..' / 'win64' / executable.name
+        self.assertTrue(alias.samefile(executable))
+        before = self.snapshot()
+        running = subprocess.CompletedProcess([], 0, str(alias) + '\n', '')
+        with mock.patch.object(INSTALLER.subprocess, 'run', return_value=running):
+            with self.assertRaisesRegex(RuntimeError, 'Exit the CS2 client'):
+                self.invoke('--legacy-bindings')
         self.assert_destinations(before)
         self.assertEqual(self.backups(), [])
 
